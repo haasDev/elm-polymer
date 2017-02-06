@@ -1,7 +1,6 @@
 port module Main exposing (..)
 
 import Html exposing (..)
-import Html.App exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode as Json
@@ -16,16 +15,22 @@ init flags =
     ( flags.value, Cmd.none )
 
 
+detailValue : Json.Decoder Int
 detailValue =
     Json.at [ "detail", "value" ] Json.int
 
 
+onValueChanged : (Int -> value) -> Attribute value
 onValueChanged tagger =
     on "value-changed" <| Json.map tagger detailValue
 
+
+value : String -> Attribute Msg
 value =
     attribute "value"
 
+
+myCounter : List (Attribute Msg) -> List (Html Msg) -> Html Msg
 myCounter =
     node "my-counter"
 
@@ -33,7 +38,7 @@ myCounter =
 view : Model -> Html Msg
 view model =
     div []
-        [ myCounter [ value <| toString model , onValueChanged Change ] []
+        [ myCounter [ value <| toString model, onValueChanged Change ] []
         , p []
             [ text "Controls:"
             , button [ onClick Reset ] [ text "Reset" ]
@@ -41,6 +46,7 @@ view model =
         ]
 
 
+helpMessage : a -> Html Msg
 helpMessage model =
     p [ class "help" ] [ text <| "My help message" ++ (toString model) ]
 
@@ -64,9 +70,9 @@ update msg model =
             ( model, Cmd.none )
 
 
-main : Program { value : Int }
+main : Program { value : Int } Model Msg
 main =
-    programWithFlags
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update

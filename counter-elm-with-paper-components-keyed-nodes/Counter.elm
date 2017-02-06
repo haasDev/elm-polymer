@@ -1,7 +1,6 @@
 module Card exposing (..)
 
 import Html exposing (..)
-import Html.App exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.Keyed
@@ -16,10 +15,12 @@ init =
     ( 3, Cmd.none )
 
 
+paperCard : List (Attribute msg) -> List (Html msg) -> Html msg
 paperCard =
     node "paper-card"
 
 
+paperButton : List (Attribute msg) -> List (Html msg) -> Html msg
 paperButton =
     node "paper-button"
 
@@ -55,9 +56,9 @@ update msg model =
             ( model - 1, Cmd.none )
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    program
+    Html.program
         { init = init
         , view = view
         , update = update

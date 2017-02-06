@@ -1,7 +1,6 @@
 module Counter exposing (..)
 
 import Html exposing (..)
-import Html.App exposing (..)
 import Html.Events exposing (..)
 
 
@@ -33,9 +32,9 @@ update msg model =
             model - 1
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    beginnerProgram
+    Html.beginnerProgram
         { model = 0
         , view = view
         , update = update
