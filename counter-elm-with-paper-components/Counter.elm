@@ -14,10 +14,12 @@ init =
     ( 3, Cmd.none )
 
 
+paperCard : List (Attribute msg) -> List (Html msg) -> Html msg
 paperCard =
     node "paper-card"
 
 
+paperButton : List (Attribute msg) -> List (Html msg) -> Html msg
 paperButton =
     node "paper-button"
 

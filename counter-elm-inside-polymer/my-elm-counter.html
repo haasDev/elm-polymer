@@ -1,3 +1,7 @@
+/**
+ * Best example of how to use elm in conjunction with polymer to cover polymers deficiencies
+ */
+ 
 <link rel="import" href="../bower_components/polymer/polymer.html"/>
 
 <dom-module id="my-elm-counter">
@@ -26,9 +30,7 @@
                 },
                 ready() {
                     app = Elm.Counter.embed(this.$.embed, { value : this.value });
-                    app.ports.change.subscribe(value => {
-                        this.value = value;
-                    });
+                    app.ports.change.subscribe(value => this.value = value);
                 },
             });
         })();

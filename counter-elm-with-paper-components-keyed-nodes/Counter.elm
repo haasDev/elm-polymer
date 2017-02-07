@@ -15,6 +15,10 @@ init =
     ( 3, Cmd.none )
 
 
+myCounter =
+    node "my-counter"
+
+
 paperCard : List (Attribute msg) -> List (Html msg) -> Html msg
 paperCard =
     node "paper-card"
